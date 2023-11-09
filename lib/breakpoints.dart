@@ -1,0 +1,1 @@
+const mobile = 700;
