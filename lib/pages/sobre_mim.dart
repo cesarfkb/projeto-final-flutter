@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_teste/utils/sobre_mim_textos.dart';
-import 'package:portfolio_teste/widgets/appbar_secao.dart';
+import 'package:portfolio_teste/widgets/sobre_mim_textos.dart';
+import 'package:portfolio_teste/widgets/appbar_comum.dart';
+import 'package:portfolio_teste/widgets/background.dart';
 
 class SobreMim extends StatefulWidget {
   const SobreMim({super.key});
@@ -12,6 +13,7 @@ class SobreMim extends StatefulWidget {
 class _SobreMimState extends State<SobreMim> {
   final PageController _pageController = PageController();
   double _opacity = 1.0;
+  int _index = 0;
   String _texto = "Quem sou eu?";
 
   @override
@@ -28,13 +30,12 @@ class _SobreMimState extends State<SobreMim> {
 
   _changeText(int index) {
     setState(() {
-      _changeOpacity();
       _texto = index == 0 ? "Quem sou eu?" : "Habilidades";
-      _changeOpacity();
     });
   }
 
   _changePage(int index) {
+    _index = index;
     index == 0
         ? _pageController.previousPage(
             duration: const Duration(milliseconds: 300),
@@ -42,25 +43,31 @@ class _SobreMimState extends State<SobreMim> {
         : _pageController.nextPage(
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut);
-    _changeText(index);
+    _changeOpacity();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
-        child: AppbarSecao(
-          titulo: _texto,
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(100),
+        child: AppbarComum(
+          titulo: "",
         ),
       ),
-      body: Align(
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(20),
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              AnimatedOpacity(
+                  onEnd: () {
+                    _changeText(_index);
+                    _opacity == 0 ? _changeOpacity() : null;
+                  },
+                  duration: const Duration(milliseconds: 300),
+                  opacity: _opacity,
+                  child: Text(_texto, style: const TextStyle(fontSize: 60))),
+              Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,18 +75,16 @@ class _SobreMimState extends State<SobreMim> {
                     IconButton(
                         onPressed: () => _changePage(0),
                         icon: const Icon(Icons.arrow_back)),
-                    Expanded(
-                      child: _buildTextoPageView(),
-                    ),
+                    Expanded(child: _buildTextoPageView()),
                     IconButton(
                         onPressed: () => _changePage(1),
                         icon: const Icon(Icons.arrow_forward))
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -91,20 +96,29 @@ class _SobreMimState extends State<SobreMim> {
       physics: const NeverScrollableScrollPhysics(),
       pageSnapping: true,
       children: const [
-        Text(
-          texto1,
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            texto1,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+            softWrap: true,
           ),
-          softWrap: true,
         ),
-        Text(
-          texto2,
-          style: TextStyle(
-            fontSize: 20,
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            texto2,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+            softWrap: true,
           ),
-          softWrap: true,
         ),
       ],
     );

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_teste/breakpoints.dart';
-import 'package:portfolio_teste/widgets/cartao.dart';
+import 'package:portfolio_teste/widgets/home_page_items.dart';
 import 'package:portfolio_teste/widgets/item_container.dart';
 
 class ListViewCreator extends StatefulWidget {
-  final List<Cartao> cartoes;
+  final List<HomePageItems> cartoes;
   final bool isVertical;
   const ListViewCreator(
       {super.key, required this.cartoes, this.isVertical = true});
@@ -22,11 +22,13 @@ class _ListViewCreatorState extends State<ListViewCreator> {
       final maxWidth = constraints.maxWidth;
       if (maxWidth > mobile) {
         return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.6,
+          width: MediaQuery.of(context).size.width * 0.6,
           child: _builderListView(),
         );
       } else {
-        return _builderListView();
+        return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: _builderListView());
       }
     });
   }

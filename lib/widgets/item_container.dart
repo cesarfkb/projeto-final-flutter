@@ -25,8 +25,8 @@ class _ItemContainerState extends State<ItemContainer> {
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.5,
         child: AnimatedContainer(
+            clipBehavior: Clip.antiAlias,
             duration: const Duration(milliseconds: 300),
-            clipBehavior: Clip.hardEdge,
             margin: widget.isHover
                 ? const EdgeInsets.all(5)
                 : const EdgeInsets.all(15),

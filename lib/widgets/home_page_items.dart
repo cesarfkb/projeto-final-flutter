@@ -4,13 +4,14 @@ import "dart:io";
 import "package:flutter/material.dart";
 import "package:http/http.dart" as http;
 import "package:portfolio_teste/pages/certificados.dart";
+import "package:portfolio_teste/pages/contatos.dart";
 import "package:portfolio_teste/pages/sobre_mim.dart";
 
-class Cartao {
+class HomePageItems {
   final String titulo, descricao, search;
   Function changePage;
   String urlImagem;
-  Cartao({
+  HomePageItems({
     required this.titulo,
     required this.descricao,
     required this.search,
@@ -33,8 +34,8 @@ class Cartao {
   }
 }
 
-List<Cartao> cards = [
-  Cartao(
+List<HomePageItems> homeItems = [
+  HomePageItems(
       titulo: "Sobre mim",
       search: "Profile Picture",
       descricao: "Descrição sobre mim",
@@ -43,7 +44,7 @@ List<Cartao> cards = [
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => SobreMim()));
       }),
-  Cartao(
+  HomePageItems(
       titulo: "Meus projetos",
       search: "Projects",
       descricao: "Descrição sobre meus projetos",
@@ -52,7 +53,7 @@ List<Cartao> cards = [
       //Navigator.push(
       //    context, MaterialPageRoute(builder: (context) => Projetos()));
       ),
-  Cartao(
+  HomePageItems(
       titulo: "Certificados",
       search: "Certificates",
       descricao: "Descrição sobre certificados",
@@ -61,12 +62,15 @@ List<Cartao> cards = [
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Certificados()));
       }),
-  Cartao(
+  HomePageItems(
     titulo: "Contato",
     search: "Contact",
     descricao: "Descrição sobre contato",
     urlImagem: "https://placehold.co/1920x1080/8b0000/FFFFFF/png",
-    changePage: (context) {},
+    changePage: (context) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Contatos()));
+    },
   )
 ];
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AppbarSecao extends StatelessWidget {
+class AppbarComum extends StatelessWidget {
   final String titulo;
-  const AppbarSecao({super.key, required this.titulo});
+  const AppbarComum({super.key, required this.titulo});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,10 @@ class AppbarSecao extends StatelessWidget {
       elevation: 0,
       backgroundColor: Colors.transparent,
       leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
           onPressed: () => Navigator.pop(context)),
     );
   }
