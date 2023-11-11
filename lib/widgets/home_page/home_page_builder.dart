@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_teste/breakpoints.dart';
-import 'package:portfolio_teste/widgets/home_page_items.dart';
-import 'package:portfolio_teste/widgets/item_container.dart';
+import 'package:portfolio_teste/widgets/home_page/home_page_items.dart';
+import 'package:portfolio_teste/widgets/home_page/home_page_items_data.dart';
 
-class ListViewCreator extends StatefulWidget {
-  final List<HomePageItems> cartoes;
+class HomePageBuilder extends StatefulWidget {
+  final List<HomePageItemsData> cartoes;
   final bool isVertical;
-  const ListViewCreator(
+  const HomePageBuilder(
       {super.key, required this.cartoes, this.isVertical = true});
 
   @override
-  State<ListViewCreator> createState() => _ListViewCreatorState();
+  State<HomePageBuilder> createState() => _HomePageBuilderState();
 }
 
-class _ListViewCreatorState extends State<ListViewCreator> {
+class _HomePageBuilderState extends State<HomePageBuilder> {
   int _index = 0;
 
   @override
@@ -51,7 +51,7 @@ class _ListViewCreatorState extends State<ListViewCreator> {
           onTap: () {
             widget.cartoes[index].changePage(context);
           },
-          child: ItemContainer(
+          child: HomePageItems(
             key: Key(index.toString()),
             titulo: widget.cartoes[index].titulo,
             descricao: widget.cartoes[index].descricao,

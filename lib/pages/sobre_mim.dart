@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_teste/widgets/sobre_mim_textos.dart';
 import 'package:portfolio_teste/widgets/appbar_comum.dart';
-import 'package:portfolio_teste/widgets/background.dart';
 
 class SobreMim extends StatefulWidget {
   const SobreMim({super.key});
@@ -73,12 +72,18 @@ class _SobreMimState extends State<SobreMim> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IconButton(
-                        onPressed: () => _changePage(0),
-                        icon: const Icon(Icons.arrow_back)),
+                        onPressed: () => _index == 0 ? null : _changePage(0),
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: _index == 0 ? Colors.grey : Colors.black,
+                        )),
                     Expanded(child: _buildTextoPageView()),
                     IconButton(
-                        onPressed: () => _changePage(1),
-                        icon: const Icon(Icons.arrow_forward))
+                        onPressed: () => _index == 1 ? null : _changePage(1),
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: _index == 1 ? Colors.grey : Colors.black,
+                        ))
                   ],
                 ),
               ),

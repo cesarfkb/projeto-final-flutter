@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_teste/widgets/parallax_flow_delegate.dart';
 
-class ItemContainer extends StatefulWidget {
+class HomePageItems extends StatefulWidget {
   final String titulo, descricao, imagem;
   bool isHover;
-  ItemContainer(
+  HomePageItems(
       {super.key,
       required this.titulo,
       required this.descricao,
@@ -12,10 +12,10 @@ class ItemContainer extends StatefulWidget {
       this.isHover = false});
 
   @override
-  State<ItemContainer> createState() => _ItemContainerState();
+  State<HomePageItems> createState() => _HomePageItemsState();
 }
 
-class _ItemContainerState extends State<ItemContainer> {
+class _HomePageItemsState extends State<HomePageItems> {
   final GlobalKey _globalKey = GlobalKey();
 
   @override

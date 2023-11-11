@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio_teste/widgets/appbar_comum.dart';
-import 'package:portfolio_teste/widgets/background.dart';
 
 class Contatos extends StatefulWidget {
+  const Contatos({super.key});
+
   @override
   _ContatosState createState() => _ContatosState();
 }

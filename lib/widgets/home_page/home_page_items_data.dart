@@ -5,13 +5,14 @@ import "package:flutter/material.dart";
 import "package:http/http.dart" as http;
 import "package:portfolio_teste/pages/certificados.dart";
 import "package:portfolio_teste/pages/contatos.dart";
+import "package:portfolio_teste/pages/projetos.dart";
 import "package:portfolio_teste/pages/sobre_mim.dart";
 
-class HomePageItems {
+class HomePageItemsData {
   final String titulo, descricao, search;
   Function changePage;
   String urlImagem;
-  HomePageItems({
+  HomePageItemsData({
     required this.titulo,
     required this.descricao,
     required this.search,
@@ -34,35 +35,35 @@ class HomePageItems {
   }
 }
 
-List<HomePageItems> homeItems = [
-  HomePageItems(
+List<HomePageItemsData> homeItems = [
+  HomePageItemsData(
       titulo: "Sobre mim",
       search: "Profile Picture",
       descricao: "Descrição sobre mim",
       urlImagem: "https://placehold.co/1920x1080/8b0000/FFFFFF/png",
       changePage: (context) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SobreMim()));
+            context, MaterialPageRoute(builder: (context) => const SobreMim()));
       }),
-  HomePageItems(
+  HomePageItemsData(
       titulo: "Meus projetos",
       search: "Projects",
       descricao: "Descrição sobre meus projetos",
       urlImagem: "https://placehold.co/1920x1080/008b00/FFFFFF/png",
-      changePage: (context) {}
-      //Navigator.push(
-      //    context, MaterialPageRoute(builder: (context) => Projetos()));
-      ),
-  HomePageItems(
+      changePage: (context) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const Projetos()));
+      }),
+  HomePageItemsData(
       titulo: "Certificados",
       search: "Certificates",
       descricao: "Descrição sobre certificados",
       urlImagem: "https://placehold.co/1920x1080/00008b/FFFFFF/png",
       changePage: (context) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Certificados()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const Certificados()));
       }),
-  HomePageItems(
+  HomePageItemsData(
     titulo: "Contato",
     search: "Contact",
     descricao: "Descrição sobre contato",
@@ -73,5 +74,3 @@ List<HomePageItems> homeItems = [
     },
   )
 ];
-
-class Projetos {}
